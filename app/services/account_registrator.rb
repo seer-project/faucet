@@ -6,6 +6,9 @@ class AccountRegistrator
     end
 
     def is_cheap_name(account_name)
+        if account_name.length<7
+            return false
+        end
         return /[0-9-]/ =~ account_name || !(/[aeiouy]/ =~ account_name)
     end
 
@@ -57,7 +60,6 @@ class AccountRegistrator
         else
             @logger.debug(result.inspect)
             res[:result] = result
-            #GrapheneCli.instance.exec('transfer', [registrar_account, account_name, '1000', 'QBITS', 'Welcome to OpenLedger. Read more about Qbits under asset', true])
         end
         return res
     end
